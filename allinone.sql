@@ -57,3 +57,7 @@ WHERE u.id = m.old_id;
 SELECT pg_get_serial_sequence('UniGroup', 'id');
 
 SELECT setval('public.unigroup_id_seq', (SELECT MAX(id) FROM UniGroup));
+
+-- Custom CONSTRAINT
+ALTER TABLE UniGroup
+ADD CONSTRAINT check_group_year CHECK (group_year BETWEEN 1 AND 6);
