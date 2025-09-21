@@ -39,3 +39,21 @@ INNER JOIN UniGroup AS ug ON ug.id = sc.unigroup_id
 INNER JOIN Department AS d ON d.id = ug.department_id
 INNER JOIN Lector AS l ON l.id = sc.lector_id
 INNER JOIN Subject AS s ON s.id = sc.subject_id;
+
+-- Reindex the Table 
+ALTER TABLE UniGroup
+ADD CONSTRAINT check_group_year CHECK (group_year BETWEEN 1 AND 6);
+
+CREATE TEMPORARY TABLE UnigroupMap AS
+SELECT id AS old_id,
+       ROW_NUMBER() OVER (ORDER BY id) AS new_id
+FROM UniGroup;
+
+UPDATE Unigroup u
+SET id = m.new_id
+FROM UnigroupMap m
+WHERE u.id = m.old_id;
+
+SELECT pg_get_serial_sequence('UniGroup', 'id');
+
+SELECT setval('public.unigroup_id_seq', (SELECT MAX(id) FROM UniGroup));

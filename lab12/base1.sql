@@ -52,20 +52,3 @@ CREATE TABLE Schedule (
     lesson_date DATE NOT NULL,
     classroom_id INTEGER NOT NULL REFERENCES Classroom(id)
 );
-
-ALTER TABLE UniGroup
-ADD CONSTRAINT check_group_year CHECK (group_year BETWEEN 1 AND 6);
-
-CREATE TEMPORARY TABLE UnigroupMap AS
-SELECT id AS old_id,
-       ROW_NUMBER() OVER (ORDER BY id) AS new_id
-FROM UniGroup;
-
-UPDATE Unigroup u
-SET id = m.new_id
-FROM UnigroupMap m
-WHERE u.id = m.old_id;
-
-SELECT pg_get_serial_sequence('UniGroup', 'id');
-
-SELECT setval('public.unigroup_id_seq', (SELECT MAX(id) FROM UniGroup));
