@@ -1,7 +1,7 @@
 -- Many to many
 SELECT sc.*
 FROM Schedule as sc
-INNER JOIN UniGroup as ug ON ug.id = sc.unigroup_id
+INNER JOIN uni_group as ug ON ug.id = sc.uni_group_id
 INNER JOIN Subject as s ON s.id = sc.subject_id
 WHERE ug.group_year = 1;
 
@@ -22,7 +22,7 @@ SELECT
 	u.group_number,
 	u.group_year,
 	d.department_name
-FROM UniGroup u
+FROM uni_group u
 JOIN Department d
 	ON u.department_id = d.id;
 
@@ -31,32 +31,29 @@ SELECT
 	l.lector_name,
 	l.lector_surname,
 	s.subject_name,
-	sc.unigroup_id,
+	sc.uni_group_id,
 	sc.lesson_date,
 	d.department_name
 FROM Schedule AS sc
-INNER JOIN UniGroup AS ug ON ug.id = sc.unigroup_id
+INNER JOIN uni_group AS ug ON ug.id = sc.uni_group_id
 INNER JOIN Department AS d ON d.id = ug.department_id
 INNER JOIN Lector AS l ON l.id = sc.lector_id
 INNER JOIN Subject AS s ON s.id = sc.subject_id;
 
 -- Reindex the Table 
-ALTER TABLE UniGroup
-ADD CONSTRAINT check_group_year CHECK (group_year BETWEEN 1 AND 6);
-
-CREATE TEMPORARY TABLE UnigroupMap AS
+CREATE TEMPORARY TABLE uni_group_map AS
 SELECT id AS old_id,
        ROW_NUMBER() OVER (ORDER BY id) AS new_id
-FROM UniGroup;
+FROM uni_group;
 
-UPDATE Unigroup u
+UPDATE uni_group u
 SET id = m.new_id
-FROM UnigroupMap m
+FROM uni_group_map m
 WHERE u.id = m.old_id;
 
-SELECT pg_get_serial_sequence('UniGroup', 'id');
+SELECT pg_get_serial_sequence('uni_group', 'id');
 
-SELECT setval('public.unigroup_id_seq', (SELECT MAX(id) FROM UniGroup));
+SELECT setval('public.uni_group_id_seq', (SELECT MAX(id) FROM uni_group));
 
 -- Custom CONSTRAINT
 ALTER TABLE uni_group

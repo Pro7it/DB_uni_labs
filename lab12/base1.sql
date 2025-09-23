@@ -51,4 +51,5 @@ CREATE TABLE schedule (
     unigroup_id INTEGER NOT NULL REFERENCES uni_group(id),
     lesson_date DATE NOT NULL,
     classroom_id INTEGER NOT NULL REFERENCES Classroom(id)
+    UNIQUE (subject_id, lector_id, unigroup_id, lesson_date)
 );
