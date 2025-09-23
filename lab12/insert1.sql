@@ -1,10 +1,10 @@
-INSERT INTO Department (department_name) VALUES
+INSERT INTO department (department_name) VALUES
 ('AI'),
 ('VR'),
 ('Mathematics'),
 ('Literature');
 
-INSERT INTO Subject (subject_name) VALUES
+INSERT INTO subject (subject_name) VALUES
 ('Machine Learning'),
 ('Neural Networks'),
 ('NLP'),
@@ -34,13 +34,13 @@ INSERT INTO Subject (subject_name) VALUES
 ('Classical Myths'),
 ('Cultural Studies');
 
-INSERT INTO Scholarship (scholarship_type, scholarship_amount) VALUES
+INSERT INTO scholarship (scholarship_type, scholarship_amount) VALUES
 ('None', 0),
 ('Common', 2000),
 ('Higher', 3000),
 ('President', 5000);
 
-INSERT INTO Classroom (room_number, building_number) VALUES
+INSERT INTO classroom (room_number, building_number) VALUES
 (1, 1),
 (2, 1),
 (3, 1),
@@ -142,7 +142,7 @@ INSERT INTO Classroom (room_number, building_number) VALUES
 (19, 5),
 (20, 5);
 
-INSERT INTO Lector (lector_name, lector_surname, lector_salary, department_id) VALUES
+INSERT INTO lector (lector_name, lector_surname, lector_salary, department_id) VALUES
 ('Oleksandr', 'Chumak', 25250, 1),
 ('Oleksandr', 'Hrytsenko', 28200, 1),
 ('Nataliia', 'Dovzhenko', 26490, 1),
@@ -164,7 +164,7 @@ INSERT INTO Lector (lector_name, lector_surname, lector_salary, department_id) V
 ('Kyrylo', 'Karpenko', 24200, 4),
 ('Oleh', 'Polishchuk', 24300, 4);
 
-INSERT INTO Lector (lector_name, lector_surname, lector_salary, department_id) VALUES
+INSERT INTO lector (lector_name, lector_surname, lector_salary, department_id) VALUES
 ('Mykola', 'Hrytsenko', 27500, 1),
 ('Olena', 'Shevchuk', 29000, 1),
 ('Vasyl', 'Dmytrenko', 31000, 2),
@@ -175,7 +175,7 @@ INSERT INTO Lector (lector_name, lector_surname, lector_salary, department_id) V
 ('Kateryna', 'Pavlenko', 29800, 4);
 
 
-INSERT INTO UniGroup (group_year, group_number, group_curator_id, department_id) VALUES
+INSERT INTO uni_group (group_year, group_number, group_curator_id, department_id) VALUES
 (6, 1, 1, 1),
 (1, 2, 2, 1),
 (4, 3, 3, 1),
@@ -205,7 +205,7 @@ INSERT INTO UniGroup (group_year, group_number, group_curator_id, department_id)
 (2, 6, 27, 4),
 (5, 7, 28, 4);
 
-INSERT INTO Student (student_name, student_surname, unigroup_id, scholarship_id) VALUES
+INSERT INTO student (student_name, student_surname, unigroup_id, scholarship_id) VALUES
 ('Stepan', 'Baran', 1, 1),
 ('Sofiia', 'Boyko', 1, 3),
 ('Mykola', 'Soroka', 1, 1),
@@ -370,7 +370,7 @@ INSERT INTO Student (student_name, student_surname, unigroup_id, scholarship_id)
 ('Vasyl', 'Boyko', 28, 2),
 ('Iryna', 'Karpenko', 28, 2);
 
-INSERT INTO Schedule (subject_id, lector_id, unigroup_id, lesson_date, classroom_id) VALUES
+INSERT INTO schedule (subject_id, lector_id, unigroup_id, lesson_date, classroom_id) VALUES
 (1, 5, 5, '2025-10-11'::date, 76),
 (3, 5, 6, '2025-10-12'::date, 37),
 (5, 3, 7, '2025-10-13'::date, 76),
