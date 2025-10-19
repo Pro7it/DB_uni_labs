@@ -28,14 +28,14 @@ JOIN Department d
 
 -- Which lector make whick subject in whuch gruop and department
 SELECT 
-	l.lector_name,
-	l.lector_surname,
-	s.subject_name,
-	sc.uni_group_id,
+	l.name,
+	l.surname,
+	s.name,
+	sc.unigroup_id,
 	sc.lesson_date,
-	d.department_name
+	d.name
 FROM Schedule AS sc
-INNER JOIN uni_group AS ug ON ug.id = sc.uni_group_id
+INNER JOIN uni_group AS ug ON ug.id = sc.unigroup_id
 INNER JOIN Department AS d ON d.id = ug.department_id
 INNER JOIN Lector AS l ON l.id = sc.lector_id
 INNER JOIN Subject AS s ON s.id = sc.subject_id;
