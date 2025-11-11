@@ -1,5 +1,5 @@
 services:
-  db:
+  db_mongo:
     image: mongo:8.2.1
     container_name: mymongodb
     ports:
@@ -9,6 +9,19 @@ services:
     environment:
       - MONGO_INITDB_ROOT_USERNAME=${DB_USER_NAME}
       - MONGO_INITDB_ROOT_PASSWORD=${DB_USER_PASSWORD}
+    
+  db_postgres:
+    image: postgres:15
+    container_name: mypostgresdb
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_DB=mydb
+      - POSTGRES_USER=${DB_USER_NAME}
+      - POSTGRES_PASSWORD=${DB_USER_PASSWORD}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
 
 volumes:
   mongodb_data:
+  postgres_data:

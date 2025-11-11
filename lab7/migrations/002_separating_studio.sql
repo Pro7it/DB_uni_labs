@@ -1,0 +1,12 @@
+DROP TABLE IF EXISTS studio;
+
+CREATE TABLE studio (
+    id SERIAL PRIMARY KEY UNIQUE,
+    name VARCHAR(255)
+);
+
+ALTER TABLE anime
+ADD COLUMN studio_id INT REFERENCES studio(id) ON DELETE CASCADE;
+
+ALTER TABLE anime
+DROP COLUMN studious;
