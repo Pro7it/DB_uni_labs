@@ -40,7 +40,7 @@ CREATE TABLE student (
     id SERIAL PRIMARY KEY,
     student_name VARCHAR(50) NOT NULL,
     student_surname VARCHAR(50) NOT NULL,
-    unigroup_id INTEGER NOT NULL REFERENCES UniGroup(id),
+    unigroup_id INTEGER NOT NULL REFERENCES Uni_group(id),
     scholarship_id INTEGER NOT NULL REFERENCES Scholarship(id)
 );
 
@@ -50,6 +50,6 @@ CREATE TABLE schedule (
     lector_id INTEGER NOT NULL REFERENCES Lector(id),
     unigroup_id INTEGER NOT NULL REFERENCES uni_group(id),
     lesson_date DATE NOT NULL,
-    classroom_id INTEGER NOT NULL REFERENCES Classroom(id)
+    classroom_id INTEGER NOT NULL REFERENCES Classroom(id),
     UNIQUE (subject_id, lector_id, unigroup_id, lesson_date)
 );
